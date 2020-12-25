@@ -1,0 +1,1 @@
+SET JAVA_OPTS=-Dio.swagger.parser.util.RemoteUrl.trustAll=true -Dio.swagger.v3.parser.util.RemoteUrl.trustAll=true && openapi-generator generate -g typescript-angular -i https://localhost:44301/swagger/v1/swagger.json -o backend --strict-spec=true --additional-properties npmName=@backend/api,npmVersion=1.0.0,snapshot=false

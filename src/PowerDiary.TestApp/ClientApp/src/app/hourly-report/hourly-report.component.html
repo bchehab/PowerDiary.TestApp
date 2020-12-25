@@ -1,0 +1,12 @@
+<div class="chat-container mat-elevation-z8">
+  <h3>Hourly Report</h3>
+  <hr>
+  <div class="mt20"
+    *ngFor="let result of results">
+    <div class="left">{{result.time}}:</div>
+    <div class="ml100"
+      *ngFor="let event of result.events">
+      {{event.eventDisplay}}
+    </div>
+  </div>
+</div>

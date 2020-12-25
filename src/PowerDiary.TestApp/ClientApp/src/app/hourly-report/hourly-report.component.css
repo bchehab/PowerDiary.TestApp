@@ -1,0 +1,15 @@
+.left {
+  float: left;
+}
+
+.ml100 {
+  margin-left: 100px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.chat-container {
+  padding: 20px;
+}

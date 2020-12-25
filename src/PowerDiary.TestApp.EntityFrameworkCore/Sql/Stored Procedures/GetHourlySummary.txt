@@ -1,0 +1,39 @@
+﻿IF EXISTS
+(
+    SELECT type_desc,
+           type
+    FROM sys.procedures WITH (NOLOCK)
+    WHERE name = 'GetHourlySummary'
+          AND type = 'P'
+)
+    DROP PROCEDURE dbo.GetHourlySummary;
+GO
+
+SET QUOTED_IDENTIFIER ON;
+SET ANSI_NULLS ON;
+GO
+
+CREATE PROCEDURE [dbo].[GetHourlySummary] --[GetHourlySummary]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT DISTINCT
+           et.Id AS EventTypeId,
+           et.Name,
+           DATEPART(HOUR, e.CreatedDate) AS 'Time',
+           FORMAT(e.CreatedDate, 'h tt') AS 'TimeDisplay',
+           COUNT(e.User1Id) OVER (PARTITION BY DATEPART(HOUR, e.CreatedDate), e.ChatEventTypeId) AS EventCount,
+           CASE et.[Name]
+               WHEN 'high-five-another-user' THEN
+                   COUNT(e.User2Id) OVER (PARTITION BY DATEPART(HOUR, e.CreatedDate), e.ChatEventTypeId)
+               ELSE
+                   0
+           END AS HighFiveCount
+    FROM dbo.ChatEvents e
+        JOIN dbo.ChatEventTypes et
+            ON et.Id = e.ChatEventTypeId
+	WHERE e.IsActive = 1
+    ORDER BY DATEPART(HOUR, e.CreatedDate);
+END;
+GO

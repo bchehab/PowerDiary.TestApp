@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Humanizer.Core" Version="2.8.26" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PowerDiary.TestApp.Core\PowerDiary.TestApp.Core.csproj" />
+    <ProjectReference Include="..\PowerDiary.TestApp.EntityFrameworkCore\PowerDiary.TestApp.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\PowerDiary.TestApp.Shared\PowerDiary.TestApp.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

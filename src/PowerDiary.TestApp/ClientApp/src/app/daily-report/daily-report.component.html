@@ -1,0 +1,26 @@
+<div class="chat-container mat-elevation-z8">
+  <h3>Daily Report</h3>
+  <hr>
+  <mat-form-field>
+    <mat-label>Event Type</mat-label>
+    <mat-select #categorySelect
+      [(ngModel)]="dto.chatEventTypeId"
+      name="EventType"
+      (selectionChange)="eventTypeChanged()">
+      <mat-option [value]="null">All</mat-option>
+      <mat-option *ngFor="let eventType of eventTypes"
+        [value]="eventType.id">{{ eventType.description }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <ng-container *ngIf="result">
+    <div *ngFor="let chat of result.chatMessages">
+      <span class="chat-time">{{chat.time | date: 'shortTime'}}:</span> {{chat.message}}
+    </div>
+    <mat-paginator [length]="result.totalCount"
+      [pageSize]="dto.pageSize"
+      [pageIndex]="dto.pageNumber - 1"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      (page)="pageChanged($event)">
+    </mat-paginator>
+  </ng-container>
+</div>

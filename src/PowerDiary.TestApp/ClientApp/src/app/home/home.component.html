@@ -1,0 +1,15 @@
+<h3>Notes:</h3>
+<hr>
+<ul>
+  <li>Assumptions: test data are for a single day. otherwise, filtering by date would have been also needed.</li>
+  <li>EF Core: ef core has a limitation with nested GroupBys. So I wrote the hourly report as a stored proc. It's doable
+    using ef core, but i thought i'd showcase writing stored procs, since it is favoured for more complex queries and in
+    our case instead of having to ef core evaluate the query client side.</li>
+  <li>The same data has been used for the app and the test for simplicity</li>
+  <li>Usually I prefer to decouple the SPA and the api as 2 completely different apps, but for simplicity I went with
+    the VS template</li>
+  <li>swagger was used along with open-api generator (batchfile: generate-api.bat) to generate the angular api client:
+    <a href='https://localhost:44301/swagger/v1/swagger.json'>https://localhost:44301/swagger/v1/swagger.json</a>
+  </li>
+  <li>all api errors are handled server side by a global filter, and client side by an angular interceptor.</li>
+</ul>
